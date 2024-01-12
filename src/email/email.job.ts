@@ -10,13 +10,10 @@ export class EmailJob {
   async sendEmail(job: Job) {
     const { to, subject, text } = job.data;
 
-    console.log({
-      user: process.env.SMTP_USERNAME,
-      pass: process.env.SMTP_PASSWORD,
-    })
-
     const transporter = nodemailer.createTransport({
       service: 'gmail',
+      secure: true,
+      host: process.env.SMTP_HOST,
       auth: {
         user: process.env.SMTP_USERNAME,
         pass: process.env.SMTP_PASSWORD,
