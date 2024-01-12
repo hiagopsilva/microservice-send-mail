@@ -20,6 +20,9 @@ import { ConfigModule } from '@nestjs/config';
         password: process.env.REDIS_PASSWORD,
       },
     }),
+    BullModule.registerQueue({
+      name: 'emailQueue',
+    }),
     EmailModule,
   ],
 })

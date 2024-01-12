@@ -1,8 +1,9 @@
-import { Process } from '@nestjs/bull';
+import { Process, Processor } from '@nestjs/bull';
 import { Injectable } from '@nestjs/common';
 import { Job } from 'bull';
 import nodemailer from 'nodemailer';
 
+@Processor('emailQueue')
 @Injectable()
 export class EmailJob {
   @Process('sendEmail')
