@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  microservice-send-mail-aucgames: 
+    build: .
+    command: npm start
+    ports:
+      - '3335:3335'
+      - "6379:6379"
+    volumes:
+      - .:/usr/src/app/
+        – /node_module/
