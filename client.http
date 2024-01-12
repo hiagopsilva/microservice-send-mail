@@ -1,6 +1,4 @@
-@baseUrl = http://localhost:3333
-@authToken = {{authenticate.response.body.access_token}}
-
+@baseUrl = http://localhost:3335
 
 ###
 
@@ -8,8 +6,9 @@
 POST {{baseUrl}}/email/send
 Content-Type: application/json
 
-{
-  "email": "hiagohps360@gmail.com",
-  "password": "123"
+{ 
+  "to": "hiagohps360@gmail.com",
+  "subject": "Test", 
+  "text": "Teste de envio de email"
 }
 

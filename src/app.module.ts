@@ -1,13 +1,23 @@
 import { Module } from '@nestjs/common';
 import { BullModule } from '@nestjs/bull';
 import { EmailModule } from './email/email.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(
+      {
+        envFilePath: '.env',
+        isGlobal: true,
+      },
+    ),
     BullModule.forRoot({
       redis: {
-        host: 'localhost',
-        port: 6379,
+        host: process.env.REDIS_HOST,
+        port: +process.env.REDIS_PORT,
+        connectionName: process.env.REDIS_CONNECTION_NAME,
+        username: process.env.REDIS_USERNAME,
+        password: process.env.REDIS_PASSWORD,
       },
     }),
     EmailModule,
