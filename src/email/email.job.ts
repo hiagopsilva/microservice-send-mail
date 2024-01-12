@@ -1,7 +1,8 @@
+"use strict";
 import { Process, Processor } from '@nestjs/bull';
 import { Injectable } from '@nestjs/common';
 import { Job } from 'bull';
-import nodemailer from 'nodemailer';
+import { createTransport } from 'nodemailer';
 
 @Processor('emailQueue')
 @Injectable()
@@ -10,14 +11,18 @@ export class EmailJob {
   async sendEmail(job: Job) {
     const { to, subject, text } = job.data;
 
-    const transporter = nodemailer.createTransport({
+    const transporter = createTransport({
       service: 'gmail',
       secure: true,
       host: process.env.SMTP_HOST,
+      port: +process.env.SMTP_PORT,
       auth: {
         user: process.env.SMTP_USERNAME,
         pass: process.env.SMTP_PASSWORD,
       },
+      tls: {
+        rejectUnauthorized: false,
+      }
     });
 
     const mailOptions = {

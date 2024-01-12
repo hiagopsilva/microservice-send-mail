@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { BullModule } from '@nestjs/bull';
 import { EmailModule } from './email/email.module';
 import { ConfigModule } from '@nestjs/config';
+import 'nodemailer';
+
 
 @Module({
   imports: [
