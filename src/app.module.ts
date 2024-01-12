@@ -7,8 +7,7 @@ import 'nodemailer';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(
-      {
+    ConfigModule.forRoot({
         envFilePath: '.env',
         isGlobal: true,
       },
